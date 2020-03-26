@@ -25,9 +25,19 @@ vpath %.c $(foreach rep, $(SRC_PATH), $(rep):)
 $(EXEC) : $(OBJ)
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
-$(OBJ_PATH)Main.o : 
+$(OBJ_PATH)Main.o : $(HEADER)Traitement.h $(HEADER)Test.h
 
-$(OBJ_PATH) :
+$(OBJ_PATH)Parseur.o : $(HEADER)Parseur.h $(HEADER)ListeMot.h $(HEADER)Affichage.h $(HEADER)Traitement.h 
+
+$(OBJ_PATH)Traitement.o : $(HEADER)Traitement.h $(HEADER)Affichage.h 
+
+$(OBJ_PATH)ListeMot.o : $(HEADER)ListeMot.h
+
+$(OBJ_PATH)Affichage.o : $(HEADER)Affichage.h
+
+$(OBJ_PATH)Ecriture.o : $(HEADER)Affichage.h $(HEADER)Ecriture.h
+
+$(OBJ_PATH)Test.o : $(HEADER)Parseur.h $(HEADER)ListeMot.h $(HEADER)Affichage.h $(HEADER)Traitement.h 
 
 $(OBJ_PATH)%.o : %.c
 	@mkdir -p $(OBJ_PATH)
