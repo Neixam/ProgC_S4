@@ -20,7 +20,7 @@ OBJ = $(addprefix $(OBJ_PATH),$(SRC:.c=.o))
 
 SRC_PATH = $(shell find src -type d)
 
-vpath %.c $(foreach rep, $(SRC_PATH), $(rep):)
+vpath %.c $(foreach rep, $(SRC_PATH), $(rep))
 
 $(EXEC) : $(OBJ)
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
